@@ -1,23 +1,19 @@
 @import "../../../scss/index";
 
 .FormSubmit {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 0;
   border: none;
   text-transform: uppercase;
-  font-size: 11px;
-  position: relative;
-  z-index: 500;
-  letter-spacing: 0.06em;
+  font-size: 16px;
+  letter-spacing: 0.3em;
   text-align: center;
   cursor: pointer;
-  background: #ec7242;
-  color: #fff;
-  width: 101%;
-  transition: 0.8s all ease;
+  background: $brownlight;
+  color: $white;
+  width: 100%;
+  transition: 0.4s all ease;
   &:hover {
-    background: #d6673c;
-    transform: translateY(1px);
+    background: $brown;
     transition: 0.4s all ease;
   }
 }

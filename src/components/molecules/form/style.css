@@ -1,21 +1,16 @@
 form {
   background: #faf5f3;
-  width: 280px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  position: absolute;
-  z-index: 10;
-  padding: 60px 60px 80px;
+  padding: 60px;
   opacity: 0.95;
 }
 
 form h2 {
   text-transform: uppercase;
   text-align: center;
-  font-size: 18px;
-  color: #2f1f1e;
-  letter-spacing: 0.061em;
-  margin-top: 60px;
-  margin-bottom: 20px;
+  font-size: 24px;
+  color: #4e3332;
+  letter-spacing: 0.06em;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 /*# sourceMappingURL=style.css.map */
