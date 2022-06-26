@@ -6,51 +6,10 @@ export default function App() {
     preparation_time: "",
     type: "",
     no_of_slices: "",
+    diameter: "",
     spiciness_scale: "",
     slices_of_bread: "",
   });
-
-  const [dishes] = useState([
-    {
-      label: "Pizza",
-      value: "Pizza",
-      field: (
-        <div>
-          <label htmlFor="pizza">Toppings</label>
-          <input type="number" id="pizza" />
-        </div>
-      ),
-    },
-    {
-      label: "Soup",
-      value: "Soup",
-      field: (
-        <div>
-          <label htmlFor="soup">How soupy?</label>
-          <input type="range" id="soup" max="10" min="1" />
-        </div>
-      ),
-    },
-    {
-      label: "Sandwich",
-      value: "Sandwich",
-      field: (
-        <div>
-          <label htmlFor="sandwich">Enter your ingredients</label>
-          <input type="text" id="sandwich" />
-        </div>
-      ),
-    },
-  ]);
-  const [selectedDish, setSelectedDish] = useState(dishes[0]);
-
-  const handleDishSelect = (e) => {
-    const dish = dishes.find((dish) => dish.value === e.target.value);
-    if (dish) {
-      setSelectedDish(dish);
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e);
@@ -60,24 +19,113 @@ export default function App() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const [dishes] = React.useState([
+    {
+      label: "Pizza",
+      value: "Pizza",
+    },
+    { label: "Soup", value: "Soup" },
+    { label: "Sandwich", value: "Sandwich" },
+  ]);
+  const [type, setType] = useState([]);
+
+  const handleChang = (value) => {
+    setType(value);
+    setValues({ ...values, type: value });
+  };
+
+  console.log(values);
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label>Name</label>
-        <input type="text" onChange={onChange} required></input>
+        <input
+          type="text"
+          name="name"
+          value={values["name"]}
+          onChange={onChange}
+          required
+        ></input>
         <label>Preperation Time</label>
-        <input type="time" step="2" onChange={onChange} required></input>
+        <input
+          type="time"
+          name="preparation_time"
+          step="2"
+          value={values["preparation_time"]}
+          onChange={onChange}
+          required
+        ></input>
+
         <label>Type</label>
-        <select onChange={handleDishSelect}>
+        <select onChange={(e) => handleChang(e.target.value)}>
+          <option disabled selected value>
+            {" "}
+            -- select an option --{" "}
+          </option>
           {dishes.map((dish) => (
             <option key={dish.value} value={dish.value}>
               {dish.label}
             </option>
           ))}
         </select>
-        {selectedDish && selectedDish.field}
+        {type === "Pizza" && (
+          <>
+            {" "}
+            <label>Number of slices</label>
+            <input
+              type="number"
+              inputmode="numeric"
+              pattern="\d*"
+              step="1"
+              name="no_of_slices"
+              value={values["no_of_slices"]}
+              onChange={onChange}
+              required
+            ></input>
+            <label>Diameter</label>
+            <input
+              type="float"
+              name="diameter"
+              value={values["diameter"]}
+              onChange={onChange}
+              required
+            ></input>
+          </>
+        )}
+        {type === "Soup" && (
+          <>
+            {" "}
+            <label>Spiciness scale</label>
+            <input
+              type="range"
+              min="1"
+              max="10"
+              name="spiciness_scale"
+              value={values["spiciness_scale"]}
+              onChange={onChange}
+              required
+            ></input>
+          </>
+        )}
+        {type === "Sandwich" && (
+          <>
+            {" "}
+            <label>Slices of bread</label>
+            <input
+              type="number"
+              inputmode="numeric"
+              pattern="\d*"
+              step="1"
+              name="slices_of_bread"
+              value={values["slices_of_bread"]}
+              onChange={onChange}
+              required
+            ></input>
+          </>
+        )}
         <button>submit</button>
       </form>
     </div>
   );
 }
+//<button onClick={console.log(values)}>check</button>
