@@ -1,0 +1,21 @@
+@import "../../../scss/index";
+
+form {
+  background: $gray;
+  width: 280px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  position: absolute;
+  z-index: 10;
+  padding: 60px 60px 80px;
+  opacity: 0.95;
+  h2 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 18px;
+    color: darken(#4e3332, 10%);
+    letter-spacing: 0.061em;
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,21 @@
+form {
+  background: #faf5f3;
+  width: 280px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  position: absolute;
+  z-index: 10;
+  padding: 60px 60px 80px;
+  opacity: 0.95;
+}
+
+form h2 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 18px;
+  color: #2f1f1e;
+  letter-spacing: 0.061em;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=style.css.map */

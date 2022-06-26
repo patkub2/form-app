@@ -1,5 +1,3 @@
-@import "../../../scss/index";
-
 .FormSubmit {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -14,10 +12,15 @@
   background: #ec7242;
   color: #fff;
   width: 101%;
+  -webkit-transition: 0.8s all ease;
   transition: 0.8s all ease;
-  &:hover {
-    background: #d6673c;
-    transform: translateY(1px);
-    transition: 0.4s all ease;
-  }
 }
+
+.FormSubmit:hover {
+  background: #d6673c;
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+  -webkit-transition: 0.4s all ease;
+  transition: 0.4s all ease;
+}
+/*# sourceMappingURL=style.css.map */

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import FormInput from "../../atoms/formInput/FormInput";
 import FormSelect from "../../atoms/formSelect/FormSelect";
+import "./style.css";
+import FormSubmit from "../../atoms/formSubmit/FormSubmit";
 
 export default function Form() {
   const [values, setValues] = useState({
     name: "",
-    preparation_time: "19:25:06",
+    preparation_time: "",
     type: "pizza",
     no_of_slices: 0,
     diameter: 0,
@@ -57,7 +59,8 @@ export default function Form() {
 
   console.log(values);
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form">
+      <h2>Dishes App</h2>
       <FormInput
         label="Name"
         type="text"
@@ -130,7 +133,7 @@ export default function Form() {
           required
         />
       )}
-      <button>submit</button>
+      <FormSubmit>Submit</FormSubmit>
     </form>
   );
 }
