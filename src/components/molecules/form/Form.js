@@ -4,6 +4,8 @@ import FormInput from "../../atoms/formInput/FormInput";
 import FormSelect from "../../atoms/formSelect/FormSelect";
 import "./style.css";
 import FormSubmit from "../../atoms/formSubmit/FormSubmit";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Form() {
   const [values, setValues] = useState({
@@ -37,9 +39,27 @@ export default function Form() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        toast.success("Success dish went to the cloud!", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch(function (error) {
         console.log(error);
+        toast.error("Eroor form can't be sent", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 
@@ -57,84 +77,95 @@ export default function Form() {
     setValues({ ...values, type: value });
   };
 
-  console.log(values);
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <h2>Dishes App</h2>
-      <FormInput
-        label="Name"
-        type="text"
-        name="name"
-        value={values["name"]}
-        onChange={onChange}
-        required
-      />
+    <>
+      <form onSubmit={handleSubmit} className="form">
+        <h2>Dishes App</h2>
+        <FormInput
+          label="Name"
+          type="text"
+          name="name"
+          value={values["name"]}
+          onChange={onChange}
+          required
+        />
 
-      <FormInput
-        label="Preperation Time"
-        type="time"
-        name="preparation_time"
-        step="2"
-        value={values["preparation_time"]}
-        onChange={onChange}
-        required
-      />
+        <FormInput
+          label="Preperation Time"
+          type="time"
+          name="preparation_time"
+          step="2"
+          value={values["preparation_time"]}
+          onChange={onChange}
+          required
+        />
 
-      <FormSelect
-        label="Type"
-        onChange={(e) => handleChang(e.target.value)}
-        dishes={dishes}
-      />
-      {type === "pizza" && (
-        <>
-          {" "}
+        <FormSelect
+          label="Type"
+          onChange={(e) => handleChang(e.target.value)}
+          dishes={dishes}
+        />
+        {type === "pizza" && (
+          <>
+            {" "}
+            <FormInput
+              label="Number of slices"
+              type="number"
+              pattern="\d*"
+              step="1"
+              name="no_of_slices"
+              value={values["no_of_slices"]}
+              onChange={onChange}
+              required
+            />
+            <FormInput
+              label="Diameter"
+              type="number"
+              name="diameter"
+              value={values["diameter"]}
+              onChange={onChange}
+              required
+            />
+          </>
+        )}
+        {type === "soup" && (
           <FormInput
-            label="Number of slices"
+            label="Spiciness scale"
+            type="range"
+            min="1"
+            max="10"
+            step="1"
+            name="spiciness_scale"
+            value={values["spiciness_scale"]}
+            onChange={onChange}
+            required
+          />
+        )}
+        {type === "sandwich" && (
+          <FormInput
+            label="Slices of bread"
             type="number"
             pattern="\d*"
             step="1"
-            name="no_of_slices"
-            value={values["no_of_slices"]}
+            name="slices_of_bread"
+            value={values["slices_of_bread"]}
             onChange={onChange}
             required
           />
-          <FormInput
-            label="Diameter"
-            type="number"
-            name="diameter"
-            value={values["diameter"]}
-            onChange={onChange}
-            required
-          />
-        </>
-      )}
-      {type === "soup" && (
-        <FormInput
-          label="Spiciness scale"
-          type="range"
-          min="1"
-          max="10"
-          step="1"
-          name="spiciness_scale"
-          value={values["spiciness_scale"]}
-          onChange={onChange}
-          required
-        />
-      )}
-      {type === "sandwich" && (
-        <FormInput
-          label="Slices of bread"
-          type="number"
-          pattern="\d*"
-          step="1"
-          name="slices_of_bread"
-          value={values["slices_of_bread"]}
-          onChange={onChange}
-          required
-        />
-      )}
-      <FormSubmit>Submit</FormSubmit>
-    </form>
+        )}
+        <FormSubmit>Submit</FormSubmit>
+      </form>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
   );
 }
-//<button onClick={console.log(values)}>check</button>
