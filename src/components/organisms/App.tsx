@@ -26,7 +26,7 @@ export default function App() {
     { label: "Soup", value: "soup" },
     { label: "Sandwich", value: "sandwich" },
   ]);
-  const [type, setType] = useState();
+  const [type, setType] = useState("pizza");
 
   const config = {
     method: "post",
@@ -50,7 +50,7 @@ export default function App() {
   };
 
   const onChange = (e) => {
-    e.target.type === "number"
+    e.target.type === "number" || e.target.type === "range"
       ? setValues({ ...values, [e.target.name]: parseInt(e.target.value) })
       : setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -84,10 +84,6 @@ export default function App() {
 
         <label>Type</label>
         <select onChange={(e) => handleChang(e.target.value)}>
-          <option disabled selected>
-            {" "}
-            -- select an option --{" "}
-          </option>
           {dishes.map((dish) => (
             <option key={dish.value} value={dish.value}>
               {dish.label}
@@ -125,6 +121,7 @@ export default function App() {
               type="range"
               min="1"
               max="10"
+              step="1"
               name="spiciness_scale"
               value={values["spiciness_scale"]}
               onChange={onChange}
