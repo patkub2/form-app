@@ -48,6 +48,15 @@ export default function Form() {
           draggable: true,
           progress: undefined,
         });
+        setValues({
+          name: "",
+          preparation_time: "",
+          type: "pizza",
+          no_of_slices: 0,
+          diameter: 0,
+          spiciness_scale: 0,
+          slices_of_bread: 0,
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -132,7 +141,7 @@ export default function Form() {
           <FormInput
             label="Spiciness scale"
             type="range"
-            min="1"
+            min="0"
             max="10"
             step="1"
             name="spiciness_scale"
